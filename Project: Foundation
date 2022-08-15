@@ -119,3 +119,73 @@ INSERT INTO works_with VALUES(105, 404, 33000);
 INSERT INTO works_with VALUES(107, 405, 26000);
 INSERT INTO works_with VALUES(102, 406, 15000);
 INSERT INTO works_with VALUES(105, 406, 130000);
+
+-- ----------------------------------------------------------------------------------------------
+-- Basic Queries/Command/Functions
+
+-- 1) Find all employees
+SELECT *
+FROM employee;
+
+-- 2) Find all employees ordered by salary
+SELECT *
+FROM employee
+ORDER BY salary;
+
+-- 3) Find all employees ordered by sex then name
+SELECT *
+FROM employee
+ORDER BY sex, first_name, last_name;
+
+-- 4) Find first 5 employee in the table
+SELECT *
+FROM employee
+LIMIT 5;
+
+-- 5) Find the first and last name of all employee
+SELECT first_name, last_name
+FROM employee;
+
+-- 6) Find the forename and surname of all employee
+SELECT first_name AS Forename, last_name AS Surname
+FROM employee;
+
+-- 7) Find out all different genders
+SELECT DISTINCT sex
+FROM employee;
+
+-- 8) Find the number of employee
+SELECT COUNT(emp_id)
+FROM employee;
+
+-- 9) Find the number of female employee born after 1970
+SELECT COUNT(emp_id)
+FROM employee
+WHERE sex = 'F' AND birth_day > '1971-01-01';
+
+-- 10) Find the average of all male employee's salaries
+SELECT AVG(salary)
+FROM employee
+WHERE sex = 'M';
+
+-- 11) Find the sum of all male employee's salaries
+SELECT SUM(salary)
+FROM employee
+WHERE sex = 'M';
+
+-- 12) Find the number of female and male in the company
+SELECT COUNT(sex), sex
+FROM employee
+GROUP BY sex;
+
+-- 13) Find total sales of each salesman
+SELECT SUM(total_sales), emp_id
+FROM works_with
+GROUP BY emp_id;
+
+-- 14) 
+
+
+
+
+
