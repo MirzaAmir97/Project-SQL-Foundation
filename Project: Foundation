@@ -120,6 +120,8 @@ INSERT INTO works_with VALUES(107, 405, 26000);
 INSERT INTO works_with VALUES(102, 406, 15000);
 INSERT INTO works_with VALUES(105, 406, 130000);
 
+INSERT INTO branch VALUES(4, 'Buffalo', NULL, NULL);
+
 -- ----------------------------------------------------------------------------------------------
 -- Basic Queries/Command/Functions
 
@@ -183,9 +185,47 @@ SELECT SUM(total_sales), emp_id
 FROM works_with
 GROUP BY emp_id;
 
--- 14) 
+-- 14) Find any client who are an LLC
+SELECT *
+FROM client
+WHERE client_name LIKE '%LLC';
 
+-- 15) Find any employee born in October
+SELECT *
+FROM employee
+WHERE birth_day LIKE '____-10%';
 
+-- 16) Find any client who are schools
+SELECT *
+FROM client
+WHERE client_name LIKE '%school%';
+
+-- 17) Find a list of employee and branch name
+SELECT first_name
+FROM employee
+UNION
+SELECT branch_name
+FROM branch;
+
+-- 18) Find a list of all clients & branch suppliers' name
+SELECT client_name, client.branch_id
+FROM client
+UNION
+SELECT supplier_name, branch_supplier.branch_id
+FROM branch_supplier;
+
+-- 19) Find a list of all money spent or earned by the company
+SELECT salary
+FROM employee
+UNION 
+SELECT total_sales
+FROM works_with;
+
+-- 20) Find all branches and the names of their managers
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+JOIN branch
+ON employee.emp_id = branch.mgr_id;
 
 
 
